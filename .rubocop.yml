@@ -1,0 +1,11 @@
+ClassLength:
+  Max: 300
+
+Documentation:
+  Enabled: false
+
+FileName:
+  Enabled: false
+
+MethodLength:
+  Max: 20

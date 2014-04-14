@@ -1,0 +1,41 @@
+en:
+  lita:
+    handlers:
+      kegbot:
+        drinks:
+          info: "%{user} poured a glass at %{date}"
+          none: No drinks have been poured
+        error:
+          not_implemented: Not implemented yet.
+          request: There was a problem with the Kegbot request
+        help:
+          drink_list:
+            syntax: (kegbot|kb) drink list
+            desc: List last 5 drinks poured
+          drink_list_N:
+            syntax: (kegbot|kb) drink list <N>
+            desc: List last <N> drinks poured
+          tap_list:
+            syntax: (kegbot|kb) tap list
+            desc: Lists taps
+          tap_status:
+            syntax: (kegbot|kb) tap status
+            desc: Shows status of all taps
+          tap_status_id:
+            syntax: (kegbot|kb) tap status <id>
+            desc: Shows status of tap <id>
+          keg_list:
+            syntax: (kegbot|kb) keg list
+            desc: Lists kegs (this includes kegs that are no longer connected)
+          keg_status:
+            syntax: (kegbot|kb) keg status
+            desc: Shows status of all kegs
+          keg_status_id:
+            syntax: (kegbot|kb) keg status <id>
+            desc: Shows status of keg <id>
+        kegs:
+          info: "Keg #%{id}: %{desc}, status: %{status}, %{pct}% remaining"
+          none: No kegs have been configured
+        taps:
+          info: "Tap #%{id}: %{desc}, %{pct}% remaining"
+          none: No taps have been configured

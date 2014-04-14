@@ -1,0 +1,28 @@
+{
+  "result": {
+    "kegs": [
+      {
+        "status": "online",
+        "volume_ml_remain": 299.24664065039542,
+        "finished_time": "2010-06-11T23:25:16",
+        "description": "Celebrating the World Cup, and international relations, with a beer that's part Austria / part Berkeley.",
+        "type_id": "20bd3f32-75eb-11df-80f2-00304833977c",
+        "started_time": "2010-06-11T23:25:16",
+        "size_id": 1,
+        "percent_full": 0.0051001891001911156,
+        "id": 17
+      },
+      {
+        "status": "offline",
+        "volume_ml_remain": -13363.120936177656,
+        "finished_time": "2010-05-29T13:01:20",
+        "description": "Racer 5",
+        "type_id": "e29a5d90-6b5c-11df-bcbc-00304833977c",
+        "started_time": "2010-05-29T13:01:20",
+        "size_id": 1,
+        "percent_full": -0.22775341302110927,
+        "id": 16
+      }
+    ]
+  }
+}
