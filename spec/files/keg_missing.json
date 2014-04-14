@@ -1,0 +1,10 @@
+{
+  "meta": {
+    "result": "error"
+  },
+  "error": {
+    "message": "No Keg matches the given query.",
+    "code": "NotFoundError",
+    "traceback": "Traceback (most recent call last):\n  File \"/home/ubuntu/kb/local/lib/python2.7/site-packages/django/core/handlers/base.py\", line 114, in get_response\n    response = wrapped_callback(request, *callback_args, **callback_kwargs)\n  File \"/home/ubuntu/kb/local/lib/python2.7/site-packages/pykeg/web/api/views.py\", line 261, in get_keg\n    keg = get_object_or_404(models.Keg, id=keg_id)\n  File \"/home/ubuntu/kb/local/lib/python2.7/site-packages/django/shortcuts/__init__.py\", line 115, in get_object_or_404\n    raise Http404('No %s matches the given query.' % queryset.model._meta.object_name)\nHttp404: No Keg matches the given query.\n"
+  }
+}

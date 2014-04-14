@@ -1,53 +1,53 @@
 {
-  "result": {
-    "keg": {
-      "status": "offline",
-      "volume_ml_remain": 590.74554188041657,
-      "finished_time": "2009-10-17T19:34:06",
-      "description": "Racer 5",
-      "type_id": "50ad52bc-35fb-4441-a5bf-f56a55608057",
-      "started_time": "2009-09-06T14:46:00",
-      "size_id": 1,
-      "percent_full": 0.010068330147789123,
-      "id": 13
-    },
-    "type": {
+  "object": {
+    "volume_ml_remain": 58673.9,
+    "full_volume_ml": 58673.9,
+    "served_volume_ml": 0.0,
+    "type_id": "1",
+    "spilled_ml": 0.0,
+    "start_time": "2014-04-14T07:23:01+00:00",
+    "percent_full": 100.0,
+    "size_id": 0,
+    "size_name": "half-barrel",
+    "beverage": {
+      "abv_percent": 7.5,
+      "style": "India Pale Ale",
+      "beverage_type": "beer",
       "name": "Racer 5",
-      "style_id": "8afc60f5-2ee0-40a2-a53a-39c6f43ed4bf",
-      "calories_oz": 12.5,
-      "abv": 7.2000000000000002,
-      "brewer_id": "4360bae4-5522-4fca-8e3a-0edebfc457a5",
-      "id": "50ad52bc-35fb-4441-a5bf-f56a55608057"
-    },
-    "size": {
-      "volume_ml": 58673.636363636397,
-      "id": 1,
-      "name": "15.5 gallon keg"
-    },
-    "drinks": [
-      {
-        "volume_ml": 55.667820300000002,
-        "user_id": "scarfjerk",
-        "ticks": 150,
-        "session_id": "390",
-        "is_valid": true,
-        "pour_time": "2009-10-17T19:34:06",
-        "duration": 7,
-        "keg_id": 13,
-        "id": 2054
+      "producer": {
+        "origin_city": "",
+        "name": "Bear Republic Brewing Co.",
+        "url": "http://www.bearrepublic.com/",
+        "country": "USA",
+        "origin_state": "California",
+        "is_homebrew": false,
+        "id": 1,
+        "description": ""
       },
-      {
-        "volume_ml": 441.63137438000001,
-        "user_id": null,
-        "ticks": 1190,
-        "session_id": "390",
-        "is_valid": true,
-        "user": null,
-        "pour_time": "2009-10-17T19:02:55",
-        "duration": 11,
-        "keg_id": 13,
-        "id": 2053
-      }
-    ]
+      "untappd_id": "1553",
+      "id": 1
+    },
+    "end_time": "2014-04-14T07:23:01+00:00",
+    "keg_type": "half-barrel",
+    "online": true,
+    "remaining_volume_ml": 58673.9,
+    "spilled_volume_ml": 0.0,
+    "type": {
+      "style_id": "0",
+      "brewer_id": "1",
+      "id": "1",
+      "abv": 7.5,
+      "name": "Racer 5"
+    },
+    "id": 1,
+    "size_volume_ml": 58673.9,
+    "size": {
+      "volume_ml": 58673.9,
+      "id": 0,
+      "name": "half-barrel"
+    }
+  },
+  "meta": {
+    "result": "ok"
   }
 }

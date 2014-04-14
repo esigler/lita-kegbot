@@ -1,28 +1,102 @@
 {
-  "result": {
-    "kegs": [
-      {
-        "status": "online",
-        "volume_ml_remain": 299.24664065039542,
-        "finished_time": "2010-06-11T23:25:16",
-        "description": "Celebrating the World Cup, and international relations, with a beer that's part Austria / part Berkeley.",
-        "type_id": "20bd3f32-75eb-11df-80f2-00304833977c",
-        "started_time": "2010-06-11T23:25:16",
-        "size_id": 1,
-        "percent_full": 0.0051001891001911156,
-        "id": 17
+  "objects": [
+    {
+      "volume_ml_remain": 58673.9,
+      "full_volume_ml": 58673.9,
+      "served_volume_ml": 0.0,
+      "type_id": "2",
+      "spilled_ml": 0.0,
+      "start_time": "2014-04-14T07:28:38+00:00",
+      "percent_full": 100.0,
+      "size_id": 0,
+      "size_name": "half-barrel",
+      "beverage": {
+        "abv_percent": 9.0,
+        "style": "India Pale Ale",
+        "beverage_type": "beer",
+        "name": "90 Minute IPA",
+        "producer": {
+          "origin_city": "Milton",
+          "name": "Dogfish Head Craft Brewery",
+          "url": "http://www.dogfish.com/",
+          "country": "USA",
+          "origin_state": "Delaware",
+          "is_homebrew": false,
+          "id": 2,
+          "description": ""
+        },
+        "id": 2
       },
-      {
-        "status": "offline",
-        "volume_ml_remain": -13363.120936177656,
-        "finished_time": "2010-05-29T13:01:20",
-        "description": "Racer 5",
-        "type_id": "e29a5d90-6b5c-11df-bcbc-00304833977c",
-        "started_time": "2010-05-29T13:01:20",
-        "size_id": 1,
-        "percent_full": -0.22775341302110927,
-        "id": 16
+      "end_time": "2014-04-14T07:28:38+00:00",
+      "keg_type": "half-barrel",
+      "online": true,
+      "remaining_volume_ml": 58673.9,
+      "spilled_volume_ml": 0.0,
+      "type": {
+        "style_id": "0",
+        "brewer_id": "2",
+        "id": "2",
+        "abv": 9.0,
+        "name": "90 Minute IPA"
+      },
+      "id": 2,
+      "size_volume_ml": 58673.9,
+      "size": {
+        "volume_ml": 58673.9,
+        "id": 0,
+        "name": "half-barrel"
       }
-    ]
+    },
+    {
+      "volume_ml_remain": 58673.9,
+      "full_volume_ml": 58673.9,
+      "served_volume_ml": 0.0,
+      "type_id": "1",
+      "spilled_ml": 0.0,
+      "start_time": "2014-04-14T07:23:01+00:00",
+      "percent_full": 100.0,
+      "size_id": 0,
+      "size_name": "half-barrel",
+      "beverage": {
+        "abv_percent": 7.5,
+        "style": "India Pale Ale",
+        "beverage_type": "beer",
+        "name": "Racer 5",
+        "producer": {
+          "origin_city": "",
+          "name": "Bear Republic Brewing Co.",
+          "url": "http://www.bearrepublic.com/",
+          "country": "USA",
+          "origin_state": "California",
+          "is_homebrew": false,
+          "id": 1,
+          "description": ""
+        },
+        "untappd_id": "1553",
+        "id": 1
+      },
+      "end_time": "2014-04-14T07:23:01+00:00",
+      "keg_type": "half-barrel",
+      "online": true,
+      "remaining_volume_ml": 58673.9,
+      "spilled_volume_ml": 0.0,
+      "type": {
+        "style_id": "0",
+        "brewer_id": "1",
+        "id": "1",
+        "abv": 7.5,
+        "name": "Racer 5"
+      },
+      "id": 1,
+      "size_volume_ml": 58673.9,
+      "size": {
+        "volume_ml": 58673.9,
+        "id": 0,
+        "name": "half-barrel"
+      }
+    }
+  ],
+  "meta": {
+    "result": "ok"
   }
 }

@@ -1,10 +1,6 @@
 {
-  "result": {
-    "paging": {
-      "total": 2716,
-      "limit": 100,
-      "pos": 2000
-    },
-    "drinks": []
+  "objects": [],
+  "meta": {
+    "result": "ok"
   }
 }

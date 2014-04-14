@@ -83,8 +83,8 @@ describe Lita::Handlers::Kegbot, lita_handler: true do
     it 'shows a list of drinks if there are any' do
       grab_request('get', 200, drinks)
       send_command('kegbot drink list')
-      expect(replies.last).to eq('boysdontcall poured a glass at ' \
-                                 '2009-10-03T17:12:27')
+      expect(replies.last).to eq('esigler poured a glass at ' \
+                                 '2014-04-14T07:39:01+00:00')
     end
 
     it 'shows an empty list if there arent any' do
@@ -118,7 +118,7 @@ describe Lita::Handlers::Kegbot, lita_handler: true do
     it 'shows the status of all of the taps if there are any' do
       grab_request('get', 200, taps)
       send_command('kegbot tap status')
-      expect(replies.last).to eq('Tap #1: Racer 5, 0.51% remaining')
+      expect(replies.last).to eq('Tap #2: Second Tap')
     end
 
     it 'shows an empty list if there arent any' do
@@ -138,7 +138,7 @@ describe Lita::Handlers::Kegbot, lita_handler: true do
     it 'shows the status of a specific tap' do
       grab_request('get', 200, tap)
       send_command('kegbot tap status 1')
-      expect(replies.last).to eq('Tap #1: Racer 5, 0.51% remaining')
+      expect(replies.last).to eq('Tap #1: Main Tap')
     end
 
     it 'shows a warning if that tap does not exist' do
@@ -158,8 +158,8 @@ describe Lita::Handlers::Kegbot, lita_handler: true do
     it 'shows the status of all of the kegs if there are any' do
       grab_request('get', 200, kegs)
       send_command('kegbot keg status')
-      expect(replies.last).to eq('Keg #16: Racer 5, status: offline, ' \
-                                 '-22.78% remaining')
+      expect(replies.last).to eq('Keg #1: Racer 5, status: online, 100.0% ' \
+                                 'remaining')
     end
 
     it 'shows an empty list if there arent any' do
@@ -179,8 +179,8 @@ describe Lita::Handlers::Kegbot, lita_handler: true do
     it 'shows the status of a specific keg' do
       grab_request('get', 200, keg)
       send_command('kegbot keg status 1')
-      expect(replies.last).to eq('Keg #13: Racer 5, status: offline, ' \
-                                 '1.01% remaining')
+      expect(replies.last).to eq('Keg #1: Racer 5, status: online, 100.0% ' \
+                                 'remaining')
     end
 
     it 'shows a warning if that keg does not exist' do

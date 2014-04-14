@@ -1,0 +1,10 @@
+{
+  "meta": {
+    "result": "error"
+  },
+  "error": {
+    "message": "KegTap matching query does not exist.",
+    "code": "NotFoundError",
+    "traceback": "Traceback (most recent call last):\n  File \"/home/ubuntu/kb/local/lib/python2.7/site-packages/django/core/handlers/base.py\", line 114, in get_response\n    response = wrapped_callback(request, *callback_args, **callback_kwargs)\n  File \"/home/ubuntu/kb/local/lib/python2.7/site-packages/django/views/decorators/csrf.py\", line 57, in wrapped_view\n    return view_func(*args, **kwargs)\n  File \"/home/ubuntu/kb/local/lib/python2.7/site-packages/pykeg/web/api/views.py\", line 462, in tap_detail\n    tap = get_tap_from_meter_name_or_404(meter_name_or_id)\n  File \"/home/ubuntu/kb/local/lib/python2.7/site-packages/pykeg/web/api/views.py\", line 684, in get_tap_from_meter_name_or_404\n    raise Http404(str(e))\nHttp404: KegTap matching query does not exist.\n"
+  }
+}

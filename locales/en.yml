@@ -34,8 +34,8 @@ en:
             syntax: (kegbot|kb) keg status <id>
             desc: Shows status of keg <id>
         kegs:
-          info: "Keg #%{id}: %{desc}, status: %{status}, %{pct}% remaining"
+          info: "Keg #%{id}: %{beer}, status: %{status}, %{pct}% remaining"
           none: No kegs have been configured
         taps:
-          info: "Tap #%{id}: %{desc}, %{pct}% remaining"
+          info: "Tap #%{id}: %{name}"
           none: No taps have been configured

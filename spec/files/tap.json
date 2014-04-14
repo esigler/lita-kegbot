@@ -1,23 +1,31 @@
 {
-  "result": {
-    "keg": {
-      "status": "online",
-      "volume_ml_remain": 299.24664065039542,
-      "finished_time": "2010-06-11T23:25:16",
-      "description": "Racer 5",
-      "type_id": "20bd3f32-75eb-11df-80f2-00304833977c",
-      "started_time": "2010-06-11T23:25:16",
-      "size_id": 1,
-      "percent_full": 0.0051001891001911156,
-      "id": 17
+  "object": {
+    "meter_name": "kegboard.flow0",
+    "name": "Main Tap",
+    "ml_per_tick": 0.18518518518518517,
+    "relay_name": "kegboard.relay0",
+    "meter": {
+      "ticks_per_ml": 5.4,
+      "controller": {
+        "id": 1,
+        "name": "kegboard"
+      },
+      "port_name": "flow0",
+      "id": 1,
+      "name": "kegboard.flow0"
     },
-    "tap": {
-      "meter_name": "kegboard.flow0",
-      "name": "main tap",
-      "ml_per_tick": 0.37111880200000003,
-      "thermo_sensor_id": "1",
-      "current_keg_id": 17,
-      "id": "1"
-    }
+    "toggle": {
+      "controller": {
+        "id": 1,
+        "name": "kegboard"
+      },
+      "port_name": "relay0",
+      "id": 1,
+      "name": "kegboard.relay0"
+    },
+    "id": 1
+  },
+  "meta": {
+    "result": "ok"
   }
 }

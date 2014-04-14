@@ -62,12 +62,13 @@ module Lita
 
       def drink_list_all(response)
         result = api_request('get', 'drinks/')
-        if result && result['result'] && result['result']['drinks']
-          drinks = result['result']['drinks']
+        if result && result['objects']
+          drinks = result['objects']
           response.reply(t('drinks.none')) unless drinks.count > 0
           drinks.each do |drink|
+            session = drink['session']
             response.reply(t('drinks.info', user: drink['user_id'],
-                                            date: drink['pour_time']))
+                                            date: session['start_time']))
           end
         else
           response.reply(t('error.request'))
@@ -95,14 +96,11 @@ module Lita
 
       def tap_status_all(response)
         result = api_request('get', 'taps/')
-        if result && result['result'] && result['result']['taps']
-          taps = result['result']['taps']
+        if result && result['objects']
+          taps = result['objects']
           response.reply(t('taps.none')) unless taps.count > 0
           taps.each do |tap|
-            pct = format('%3.2f', (tap['keg']['percent_full'] * 100))
-            response.reply(t('taps.info', id: tap['tap']['id'],
-                                          desc: tap['keg']['description'],
-                                          pct: pct))
+            response.reply(t('taps.info', id: tap['id'], name: tap['name']))
           end
         else
           response.reply(t('error.request'))
@@ -112,13 +110,9 @@ module Lita
       def tap_status_id(response)
         id = response.matches[0][0].to_i
         result = api_request('get', "taps/#{id}")
-        if result && result['result'] && result['result']['tap']
-          tap = result['result']['tap']
-          keg = result['result']['keg']
-          pct = format('%3.2f', (keg['percent_full'] * 100))
-          response.reply(t('taps.info', id: tap['id'],
-                                        desc: keg['description'],
-                                        pct: pct))
+        if result && result['object']
+          tap = result['object']
+          response.reply(t('taps.info', id: tap['id'], name: tap['name']))
         else
           response.reply(t('error.request'))
         end
@@ -126,15 +120,15 @@ module Lita
 
       def keg_status_all(response)
         result = api_request('get', 'kegs/')
-        if result && result['result'] && result['result']['kegs']
-          kegs = result['result']['kegs']
+        if result && result['objects']
+          kegs = result['objects']
           response.reply(t('kegs.none')) unless kegs.count > 0
           kegs.each do |keg|
-            pct = format('%3.2f', (keg['percent_full'] * 100))
+            keg['status'] ? status = 'offline' : status = 'online'
             response.reply(t('kegs.info', id: keg['id'],
-                                          desc: keg['description'],
-                                          status: keg['status'],
-                                          pct: pct))
+                                          beer: keg['beverage']['name'],
+                                          status: status,
+                                          pct: keg['percent_full']))
           end
         else
           response.reply(t('error.request'))
@@ -144,13 +138,13 @@ module Lita
       def keg_status_id(response)
         id = response.matches[0][0].to_i
         result = api_request('get', "kegs/#{id}")
-        if result && result['result'] && result['result']['keg']
-          keg = result['result']['keg']
-          pct = format('%3.2f', (keg['percent_full'] * 100))
+        if result && result['object']
+          keg = result['object']
+          keg['status'] ? status = 'offline' : status = 'online'
           response.reply(t('kegs.info', id: keg['id'],
-                                        desc: keg['description'],
-                                        status: keg['status'],
-                                        pct: pct))
+                                        beer: keg['beverage']['name'],
+                                        status: status,
+                                        pct: keg['percent_full']))
         else
           response.reply(t('error.request'))
         end
