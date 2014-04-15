@@ -2,7 +2,7 @@ module Lita
   module Handlers
     class Kegbot < Handler
       route(
-        /^(?:kegbot|kb)\sdrink\slist$/,
+        /^(?:kegbot|kb)\s(?:drink|drinks)\slist$/,
         :drink_list_all,
         command: true,
         help: {
@@ -11,7 +11,7 @@ module Lita
       )
 
       route(
-        /^(?:kegbot|kb)\sdrink\slist\s(\d+)$/,
+        /^(?:kegbot|kb)\s(?:drink|drinks)\slist\s(\d+)$/,
         :drink_list,
         command: true,
         help: {
@@ -20,7 +20,7 @@ module Lita
       )
 
       route(
-        /^(?:kegbot|kb)\stap\sstatus$/,
+        /^(?:kegbot|kb)\s(?:tap|taps)\sstatus$/,
         :tap_status_all,
         command: true,
         help: {
@@ -29,7 +29,7 @@ module Lita
       )
 
       route(
-        /^(?:kegbot|kb)\stap\sstatus\s(\d+)$/,
+        /^(?:kegbot|kb)\s(?:tap|taps)\sstatus\s(\d+)$/,
         :tap_status_id,
         command: true,
         help: {
@@ -38,7 +38,7 @@ module Lita
       )
 
       route(
-        /^(?:kegbot|kb)\skeg\sstatus$/,
+        /^(?:kegbot|kb)\s(?:keg|kegs)\sstatus$/,
         :keg_status_all,
         command: true,
         help: {
@@ -47,7 +47,7 @@ module Lita
       )
 
       route(
-        /^(?:kegbot|kb)\skeg\sstatus\s(\d+)$/,
+        /^(?:kegbot|kb)\s(?:keg|kegs)\sstatus\s(\d+)$/,
         :keg_status_id,
         command: true,
         help: {
