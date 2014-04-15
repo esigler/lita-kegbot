@@ -33,14 +33,14 @@ describe Lita::Handlers::Kegbot, lita_handler: true do
     File.read('spec/files/keg.json')
   end
 
-  it { routes_command('kegbot drink list').to(:drink_list_all) }
+  it { routes_command('kegbot drink list').to(:drink_list) }
   it { routes_command('kegbot drink list 10').to(:drink_list) }
   it { routes_command('kegbot tap status').to(:tap_status_all) }
   it { routes_command('kegbot tap status 1').to(:tap_status_id) }
   it { routes_command('kegbot keg status').to(:keg_status_all) }
   it { routes_command('kegbot keg status 1').to(:keg_status_id) }
 
-  it { routes_command('kb drink list').to(:drink_list_all) }
+  it { routes_command('kb drink list').to(:drink_list) }
   it { routes_command('kb drink list 10').to(:drink_list) }
   it { routes_command('kb tap status').to(:tap_status_all) }
   it { routes_command('kb tap status 1').to(:tap_status_id) }
@@ -79,32 +79,24 @@ describe Lita::Handlers::Kegbot, lita_handler: true do
     Lita.config.handlers.kegbot.api_url = 'https://example.com'
   end
 
-  describe '#drink_list_all' do
+  describe '#drink_list' do
     it 'shows a list of drinks if there are any' do
       grab_request('get', 200, drinks)
       send_command('kegbot drink list')
-      expect(replies.last).to eq('esigler poured a glass at ' \
-                                 '2014-04-14T07:39:01+00:00')
+      expect(replies.last).to eq('esigler poured a refreshing glass of ' \
+                                 'Racer 5 at 2014-04-14T07:39:01+00:00')
+    end
+
+    it 'shows the correct number of drinks if there are that many' do
+      grab_request('get', 200, drinks)
+      send_command('kegbot drink list 1')
+      expect(replies.count).to eq(1)
     end
 
     it 'shows an empty list if there arent any' do
       grab_request('get', 200, drinks_empty)
       send_command('kegbot drink list')
       expect(replies.last).to eq('No drinks have been poured')
-    end
-
-    it 'shows an error if there was a problem with the request' do
-      grab_request('get', 500, nil)
-      send_command('kegbot drink list')
-      expect(replies.last).to eq('There was a problem with the Kegbot request')
-    end
-  end
-
-  describe '#drink_list' do
-    it 'shows the correct number of drinks if there are that many' do
-      grab_request('get', 200, drinks)
-      send_command('kegbot drink list 1')
-      expect(replies.count).to eq(1)
     end
 
     it 'shows an error if there was a problem with the request' do
@@ -158,7 +150,7 @@ describe Lita::Handlers::Kegbot, lita_handler: true do
     it 'shows the status of all of the kegs if there are any' do
       grab_request('get', 200, kegs)
       send_command('kegbot keg status')
-      expect(replies.last).to eq('Keg #1: Racer 5, status: online, 100.0% ' \
+      expect(replies.last).to eq('Keg #1: Racer 5, status: online, 100.00% ' \
                                  'remaining')
     end
 
@@ -179,7 +171,7 @@ describe Lita::Handlers::Kegbot, lita_handler: true do
     it 'shows the status of a specific keg' do
       grab_request('get', 200, keg)
       send_command('kegbot keg status 1')
-      expect(replies.last).to eq('Keg #1: Racer 5, status: online, 100.0% ' \
+      expect(replies.last).to eq('Keg #1: Racer 5, status: online, 100.00% ' \
                                  'remaining')
     end
 

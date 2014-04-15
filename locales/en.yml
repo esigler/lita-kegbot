@@ -3,18 +3,15 @@ en:
     handlers:
       kegbot:
         drinks:
-          info: "%{user} poured a glass at %{date}"
+          info: "%{user} poured a refreshing glass of %{beer} at %{date}"
           none: No drinks have been poured
         error:
           not_implemented: Not implemented yet.
           request: There was a problem with the Kegbot request
         help:
           drink_list:
-            syntax: (kegbot|kb) drink list
-            desc: List last 5 drinks poured
-          drink_list_N:
-            syntax: (kegbot|kb) drink list <N>
-            desc: List last <N> drinks poured
+            syntax: (kegbot|kb) drink list [N]
+            desc: List last [N] drinks poured, defaults to 5
           tap_list:
             syntax: (kegbot|kb) tap list
             desc: Lists taps
