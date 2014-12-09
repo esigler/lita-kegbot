@@ -1,11 +1,10 @@
 ClassLength:
-  Max: 300
+  Max: 130
 
 Documentation:
-  Enabled: false
+  Exclude:
+    - lib/lita/handlers/kegbot.rb
 
 FileName:
-  Enabled: false
-
-MethodLength:
-  Max: 20
+  Exclude:
+    - lib/lita-kegbot.rb

@@ -5,7 +5,7 @@ module Lita
       config :api_url, required: true
 
       route(
-        /^(?:kegbot|kb)\s(?:drink|drinks)\slist(\s\d+)*$/,
+        /^(?:kegbot|kb)\s(?:drink|drinks)\slist(?<c>\s\d+)?$/,
         :drink_list,
         command: true,
         help: {
@@ -49,25 +49,19 @@ module Lita
         }
       )
 
+      # rubocop:disable Metrics/AbcSize
       def drink_list(response)
-        count_match = response.matches[0][0]
-        count_match ? count = count_match.to_i : count = 5
-        current = 0
+        count = response.match_data['c'] ? response.match_data['c'].to_i : 5
         drinks = fetch_drinks
 
         return response.reply(t('error.request')) unless drinks
         return response.reply(t('drinks.none')) unless drinks.count > 0
 
-        drinks.each do |drink|
-          next if current >= count
-          formatted_date = drink['session']['start_time']
-          beer = drink['keg']['beverage']['name']
-          response.reply(t('drinks.info', user: drink['user_id'],
-                                          beer: beer,
-                                          date: formatted_date))
-          current += 1
+        count.times do |i|
+          response.reply(format_drink(drinks[i])) if drinks[i]
         end
       end
+      # rubocop:enable Metrics/AbcSize
 
       def tap_status_all(response)
         taps = fetch_taps
@@ -90,28 +84,34 @@ module Lita
         return response.reply(t('kegs.none')) unless kegs.count > 0
         kegs.each do |keg|
           next unless keg['online']
-          keg['online'] ? status = 'online' : status = 'offline'
-          pct = format('%3.2f', keg['percent_full'])
-          response.reply(t('kegs.info', id: keg['id'],
-                                        beer: keg['beverage']['name'],
-                                        status: status,
-                                        pct: pct))
+          response.reply(format_keg(keg))
         end
       end
 
       def keg_status_id(response)
         keg = fetch_keg(response.matches[0][0].to_i)
         return response.reply(t('error.request')) unless keg
-
-        keg['online'] ? status = 'online' : status = 'offline'
-        pct = format('%3.2f', keg['percent_full'])
-        response.reply(t('kegs.info', id: keg['id'],
-                                      beer: keg['beverage']['name'],
-                                      status: status,
-                                      pct: pct))
+        response.reply(format_keg(keg))
       end
 
       private
+
+      def format_drink(drink)
+        formatted_date = drink['session']['start_time']
+        beer = drink['keg']['beverage']['name']
+        t('drinks.info', user: drink['user_id'],
+                         beer: beer,
+                         date: formatted_date)
+      end
+
+      def format_keg(keg)
+        keg['online'] ? status = 'online' : status = 'offline'
+        pct = format('%3.2f', keg['percent_full'])
+        t('kegs.info', id: keg['id'],
+                       beer: keg['beverage']['name'],
+                       status: status,
+                       pct: pct)
+      end
 
       def fetch_drinks
         result = api_request('get', 'drinks/')
@@ -138,6 +138,7 @@ module Lita
         result['objects'] if result && result['objects']
       end
 
+      # rubocop:disable Metrics/AbcSize
       def api_request(method, path, args = {})
         http_response = http.send(method) do |req|
           req.url "#{config.api_url}/api/#{path}", args
@@ -151,6 +152,7 @@ module Lita
 
         MultiJson.load(http_response.body)
       end
+      # rubocop:enable Metrics/AbcSize
     end
 
     Lita.register_handler(Kegbot)
