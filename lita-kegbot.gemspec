@@ -3,8 +3,8 @@ Gem::Specification.new do |spec|
   spec.version       = '0.3.0'
   spec.authors       = ['Eric Sigler']
   spec.email         = ['me@esigler.com']
-  spec.description   = 'A Kegbot handler for Lita.io'
-  spec.summary       = 'A Kegbot handler for Lita.io'
+  spec.description   = 'A Kegbot plugin for Lita'
+  spec.summary       = 'A Kegbot plugin for Lita'
   spec.homepage      = 'https://github.com/esigler/lita-kegbot'
   spec.license       = 'MIT'
   spec.metadata      = { 'lita_plugin_type' => 'handler' }

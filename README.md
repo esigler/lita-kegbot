@@ -7,7 +7,7 @@
 [![Code Climate](https://img.shields.io/codeclimate/github/esigler/lita-kegbot.svg)](https://codeclimate.com/github/esigler/lita-kegbot)
 [![Gemnasium](https://img.shields.io/gemnasium/esigler/lita-kegbot.svg)](https://gemnasium.com/esigler/lita-kegbot)
 
-A Kegbot (https://kegbot.org) handler for checking what's on tap, how much is left, etc.
+A [Kegbot](https://kegbot.org) plugin for [Lita](https://github.com/jimmycuadra/lita).
 
 ## Installation
 
