@@ -50,27 +50,6 @@ describe Lita::Handlers::Kegbot, lita_handler: true do
       receive(method.to_sym).and_return(response)
   end
 
-  describe 'without valid config' do
-    before do
-      Lita.config.handlers.kegbot.api_key = nil
-      Lita.config.handlers.kegbot.api_url = nil
-    end
-
-    describe '.default_config' do
-      it 'sets api_key to nil' do
-        expect(Lita.config.handlers.kegbot.api_key).to be_nil
-      end
-
-      it 'sets api_url to nil' do
-        expect(Lita.config.handlers.kegbot.api_url).to be_nil
-      end
-    end
-
-    it 'should error out on any command' do
-      expect { send_command('kb tap status') }.to raise_error('Missing config')
-    end
-  end
-
   before do
     Lita.config.handlers.kegbot.api_key = 'foo'
     Lita.config.handlers.kegbot.api_url = 'https://example.com'

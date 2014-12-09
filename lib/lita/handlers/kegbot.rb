@@ -1,6 +1,9 @@
 module Lita
   module Handlers
     class Kegbot < Handler
+      config :api_key, required: true
+      config :api_url, required: true
+
       route(
         /^(?:kegbot|kb)\s(?:drink|drinks)\slist(\s\d+)*$/,
         :drink_list,
@@ -45,11 +48,6 @@ module Lita
           t('help.keg_status_id.syntax') => t('help.keg_status_id.desc')
         }
       )
-
-      def self.default_config(config)
-        config.api_key = nil
-        config.api_url = nil
-      end
 
       def drink_list(response)
         count_match = response.matches[0][0]
@@ -141,29 +139,17 @@ module Lita
       end
 
       def api_request(method, path, args = {})
-        if Lita.config.handlers.kegbot.api_key.nil? ||
-           Lita.config.handlers.kegbot.api_url.nil?
-          Lita.logger.error('Missing API key or Page ID for Kegbot')
-          fail 'Missing config'
-        end
-
-        url = "#{Lita.config.handlers.kegbot.api_url}/api/#{path}"
-
         http_response = http.send(method) do |req|
-          req.url url, args
-          req.headers['X-Kegbot-Api-Key'] = \
-            Lita.config.handlers.kegbot.api_key
+          req.url "#{config.api_url}/api/#{path}", args
+          req.headers['X-Kegbot-Api-Key'] = config.api_key
         end
 
-        if http_response.status == 200 ||
-           http_response.status == 201
-          MultiJson.load(http_response.body)
-        else
-          Lita.logger.error("HTTP #{method} for #{url} with #{args} " \
-                            "returned #{http_response.status}")
-          Lita.logger.error(http_response.body)
-          nil
+        unless http_response.status == 200 || http_response.status == 201
+          log.error("#{method}:#{path}:#{args}:#{http_response.status}")
+          return nil
         end
+
+        MultiJson.load(http_response.body)
       end
     end
 
