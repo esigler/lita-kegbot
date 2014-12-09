@@ -1,6 +1,6 @@
 Gem::Specification.new do |spec|
   spec.name          = 'lita-kegbot'
-  spec.version       = '0.3.0'
+  spec.version       = '1.0.0'
   spec.authors       = ['Eric Sigler']
   spec.email         = ['me@esigler.com']
   spec.description   = 'A Kegbot plugin for Lita'
