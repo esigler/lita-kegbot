@@ -33,19 +33,16 @@ describe Lita::Handlers::Kegbot, lita_handler: true do
     File.read('spec/files/keg.json')
   end
 
-  it { routes_command('kegbot drink list').to(:drink_list) }
-  it { routes_command('kegbot drink list 10').to(:drink_list) }
-  it { routes_command('kegbot tap status').to(:tap_status_all) }
-  it { routes_command('kegbot tap status 1').to(:tap_status_id) }
-  it { routes_command('kegbot keg status').to(:keg_status_all) }
-  it { routes_command('kegbot keg status 1').to(:keg_status_id) }
-
-  it { routes_command('kb drink list').to(:drink_list) }
-  it { routes_command('kb drink list 10').to(:drink_list) }
-  it { routes_command('kb tap status').to(:tap_status_all) }
-  it { routes_command('kb tap status 1').to(:tap_status_id) }
-  it { routes_command('kb keg status').to(:keg_status_all) }
-  it { routes_command('kb keg status 1').to(:keg_status_id) }
+  %w(kegbot kb).each do |name|
+    it do
+      is_expected.to route_command("#{name} drink list").to(:drink_list)
+      is_expected.to route_command("#{name} drink list 10").to(:drink_list)
+      is_expected.to route_command("#{name} tap status").to(:tap_status_all)
+      is_expected.to route_command("#{name} tap status 1").to(:tap_status_id)
+      is_expected.to route_command("#{name} keg status").to(:keg_status_all)
+      is_expected.to route_command("#{name} keg status 1").to(:keg_status_id)
+    end
+  end
 
   def grab_request(method, status, body)
     response = double('Faraday::Response', status: status, body: body)
