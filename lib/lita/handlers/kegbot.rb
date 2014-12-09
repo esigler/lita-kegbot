@@ -56,75 +56,61 @@ module Lita
         count_match ? count = count_match.to_i : count = 5
         current = 0
         drinks = fetch_drinks
-        if drinks
-          response.reply(t('drinks.none')) unless drinks.count > 0
-          drinks.each do |drink|
-            if current < count
-              formatted_date = drink['session']['start_time']
-              beer = drink['keg']['beverage']['name']
-              response.reply(t('drinks.info', user: drink['user_id'],
-                                              beer: beer,
-                                              date: formatted_date))
-              current += 1
-            end
-          end
-        else
-          response.reply(t('error.request'))
+
+        return response.reply(t('error.request')) unless drinks
+        return response.reply(t('drinks.none')) unless drinks.count > 0
+
+        drinks.each do |drink|
+          next if current >= count
+          formatted_date = drink['session']['start_time']
+          beer = drink['keg']['beverage']['name']
+          response.reply(t('drinks.info', user: drink['user_id'],
+                                          beer: beer,
+                                          date: formatted_date))
+          current += 1
         end
       end
 
       def tap_status_all(response)
         taps = fetch_taps
-        if taps
-          response.reply(t('taps.none')) unless taps.count > 0
-          taps.each do |tap|
-            response.reply(t('taps.info', id: tap['id'], name: tap['name']))
-          end
-        else
-          response.reply(t('error.request'))
+        return response.reply(t('error.request')) unless taps
+        return response.reply(t('taps.none')) unless taps.count > 0
+        taps.each do |tap|
+          response.reply(t('taps.info', id: tap['id'], name: tap['name']))
         end
       end
 
       def tap_status_id(response)
         tap = fetch_tap(response.matches[0][0].to_i)
-        if tap
-          response.reply(t('taps.info', id: tap['id'], name: tap['name']))
-        else
-          response.reply(t('error.request'))
-        end
+        return response.reply(t('error.request')) unless tap
+        response.reply(t('taps.info', id: tap['id'], name: tap['name']))
       end
 
       def keg_status_all(response)
         kegs = fetch_kegs
-        if kegs
-          response.reply(t('kegs.none')) unless kegs.count > 0
-          kegs.each do |keg|
-            if keg['online']
-              keg['online'] ? status = 'online' : status = 'offline'
-              pct = format('%3.2f', keg['percent_full'])
-              response.reply(t('kegs.info', id: keg['id'],
-                                            beer: keg['beverage']['name'],
-                                            status: status,
-                                            pct: pct))
-            end
-          end
-        else
-          response.reply(t('error.request'))
-        end
-      end
-
-      def keg_status_id(response)
-        keg = fetch_keg(response.matches[0][0].to_i)
-        if keg
+        return response.reply(t('error.request')) unless kegs
+        return response.reply(t('kegs.none')) unless kegs.count > 0
+        kegs.each do |keg|
+          next unless keg['online']
           keg['online'] ? status = 'online' : status = 'offline'
           pct = format('%3.2f', keg['percent_full'])
           response.reply(t('kegs.info', id: keg['id'],
                                         beer: keg['beverage']['name'],
                                         status: status,
                                         pct: pct))
-        else
-          response.reply(t('error.request'))
         end
+      end
+
+      def keg_status_id(response)
+        keg = fetch_keg(response.matches[0][0].to_i)
+        return response.reply(t('error.request')) unless keg
+
+        keg['online'] ? status = 'online' : status = 'offline'
+        pct = format('%3.2f', keg['percent_full'])
+        response.reply(t('kegs.info', id: keg['id'],
+                                      beer: keg['beverage']['name'],
+                                      status: status,
+                                      pct: pct))
       end
 
       private
